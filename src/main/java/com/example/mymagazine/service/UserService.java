@@ -25,8 +25,9 @@ public class UserService {
         String name = requestDto.getName();
         String nickname = requestDto.getNickname();
         String password = requestDto.getPassword();
+        String check_password = requestDto.getCheck_password();
 
-        if (requestDto.isValidateUsername(username) && requestDto.isValidatePassword(username,password)){
+        if (requestDto.isSame(password,check_password)&&requestDto.isValidateUsername(username) && requestDto.isValidatePassword(username,password)){
 
             Optional<User> findUser = userRepository.findByUsername(username);
             if(findUser.isPresent()){
@@ -35,7 +36,7 @@ public class UserService {
         }
 
         else{
-            throw new IllegalArgumentException("올바르지 않은 아이디 및 비밀번호 입니다.");
+            throw new IllegalArgumentException("올바르지 않은 입력입니다.");
         }
 
         User user = new User(username,name,nickname,passwordEncoder.encode(password));

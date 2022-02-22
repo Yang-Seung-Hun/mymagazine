@@ -11,9 +11,17 @@ public class RequestSingUpDto {
     private String name;
     private String nickname;
     private String password;
+    private String check_password;
 
     //     - 닉네임은 `최소 3자 이상, 알파벳 대소문자(a~z, A~Z), 숫자(0~9)`로 구성하기
     //     - 비밀번호는 `최소 4자 이상이며, 닉네임과 같은 값이 포함된 경우 회원가입에 실패`로 만들기
+
+    public Boolean isSame(String password, String check_password){
+        if (password.equals(check_password)){
+            return true;
+        }
+        return false;
+    }
 
     public Boolean isValidateUsername(String username){
         if(username.length() <3){
