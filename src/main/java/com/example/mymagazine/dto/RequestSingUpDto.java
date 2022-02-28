@@ -9,7 +9,6 @@ public class RequestSingUpDto {
 
     private String username;//회원 아이디
     private String name;
-    private String nickname;
     private String password;
     private String check_password;
 

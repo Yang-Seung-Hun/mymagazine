@@ -9,11 +9,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RequestRegisterPostsDto {
 
-    private String title;
-    private String content;
+    private String img_url;
+    private String contents;
 
-    public RequestRegisterPostsDto(String title, String content) {
-        this.title = title;
-        this.content = content;
+    public RequestRegisterPostsDto(String img_url, String contents) {
+        this.img_url = img_url;
+        this.contents = contents;
     }
 }

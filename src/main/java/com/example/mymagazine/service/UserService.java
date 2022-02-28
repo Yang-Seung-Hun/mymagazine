@@ -23,7 +23,6 @@ public class UserService {
     public void save(RequestSingUpDto requestDto){
         String username = requestDto.getUsername();
         String name = requestDto.getName();
-        String nickname = requestDto.getNickname();
         String password = requestDto.getPassword();
         String check_password = requestDto.getCheck_password();
 
@@ -39,7 +38,7 @@ public class UserService {
             throw new IllegalArgumentException("올바르지 않은 입력입니다.");
         }
 
-        User user = new User(username,name,nickname,passwordEncoder.encode(password));
+        User user = new User(username,name,passwordEncoder.encode(password));
         userRepository.save(user);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.mymagazine.domain;
 
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,18 +21,17 @@ public class User extends Timestamped{
     @Column(name = "user_id")
     private Long id;
 
+    @NotNull
     private String username;//사용자 아이디
 
     private String name;
 
-    private String nickname;
-
+    @NotNull
     private String password;
 
-    public User(String username, String name, String nickname, String password) {
+    public User(String username, String name, String password) {
         this.username = username;
         this.name = name;
-        this.nickname = nickname;
         this.password = password;
     }
 }

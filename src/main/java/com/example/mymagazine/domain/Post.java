@@ -15,7 +15,7 @@ public class Post extends Timestamped{
     @Column(name = "post_id")
     private Long id;
 
-    private String title;
+    private String img_url;
 
     private String contents;
 
@@ -23,14 +23,14 @@ public class Post extends Timestamped{
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Post(String title, String contents, User user) {
-        this.title = title;
+    public Post(String img_url, String contents, User user) {
+        this.img_url = img_url;
         this.contents = contents;
         this.user = user;
     }
 
     public void update(RequestPostUpdateDto requestPostUpdateDto){
-        this.title = requestPostUpdateDto.getTitle();
-        this.contents = requestPostUpdateDto.getContent();
+        this.img_url = requestPostUpdateDto.getImg_url();
+        this.contents = requestPostUpdateDto.getContents();
     }
 }

@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 public class RequestPostUpdateDto {
 
-    private String title;
-    private String content;
+    private String img_url;
+    private String contents;
 }

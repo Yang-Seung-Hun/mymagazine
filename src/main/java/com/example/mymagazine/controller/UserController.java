@@ -18,62 +18,60 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
-
-    @GetMapping("/api/signup")
-    public ResponseEntity SignUpPage(@AuthenticationPrincipal UserDetailsImpl userDetails){
-        if (userDetails != null){
-            RestApiException restApiException = new RestApiException();
-            restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
-            restApiException.setErrorMessage("이미 로그인 되어있습니다.");
-            return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
-        }
-        RestApiException restApiException = new RestApiException();
-        restApiException.setHttpStatus(HttpStatus.OK);
-        return new ResponseEntity("회원가입페이지", HttpStatus.OK);
-    }
-
-    @PostMapping("/api/signup")
-    public ResponseEntity SignUp(@RequestBody RequestSingUpDto requestSingUpDto){
-
-        try{
-            userService.save(requestSingUpDto);
-        }
-        catch (IllegalArgumentException e){
-            RestApiException restApiException = new RestApiException();
-            restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
-            restApiException.setErrorMessage(e.getMessage());
-            return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity("회원가입 완료!!", HttpStatus.OK);
-    }
-
-    @GetMapping("/api/signin")
-    public ResponseEntity SignIn(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        if (userDetails != null){
-            RestApiException restApiException = new RestApiException();
-            restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
-            restApiException.setErrorMessage("이미 로그인 되어있습니다.");
-            return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
-        }
-        RestApiException restApiException = new RestApiException();
-        restApiException.setHttpStatus(HttpStatus.OK);
-        return new ResponseEntity("로그인페이지", HttpStatus.OK);
-    }
-
-    @GetMapping("/api/signinError")
-    public ResponseEntity SignInFail(){
-
-        RestApiException restApiException = new RestApiException();
-        restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
-        restApiException.setErrorMessage("로그인 실패. username과 password를 확인해주세요");
-        return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping("/")
-    public User user(@AuthenticationPrincipal UserDetailsImpl userDetails){
-        System.out.println(userDetails.getUsername());
-        return userDetails.getUser();
-    }
-
+//    private final UserService userService;
+//
+//    @GetMapping("/api/signup")
+//    public ResponseEntity SignUpPage(@AuthenticationPrincipal UserDetailsImpl userDetails){
+//        if (userDetails != null){
+//            RestApiException restApiException = new RestApiException();
+//            restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            restApiException.setErrorMessage("이미 로그인 되어있습니다.");
+//            return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
+//        }
+//        RestApiException restApiException = new RestApiException();
+//        restApiException.setHttpStatus(HttpStatus.OK);
+//        return new ResponseEntity("회원가입페이지", HttpStatus.OK);
+//    }
+//
+//    @PostMapping("/api/signup")
+//    public ResponseEntity SignUp(@RequestBody RequestSingUpDto requestSingUpDto){
+//
+//        try{
+//            userService.save(requestSingUpDto);
+//        }
+//        catch (Exception e){
+//            RestApiException restApiException = new RestApiException();
+//            restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            restApiException.setErrorMessage(e.getMessage());
+//            return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
+//        }
+//        return new ResponseEntity("회원가입 완료!!", HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/api/signin")
+//    public ResponseEntity SignIn(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+//        if (userDetails != null){
+//            RestApiException restApiException = new RestApiException();
+//            restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
+//            restApiException.setErrorMessage("이미 로그인 되어있습니다.");
+//            return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
+//        }
+//        RestApiException restApiException = new RestApiException();
+//        restApiException.setHttpStatus(HttpStatus.OK);
+//        return new ResponseEntity("로그인페이지", HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/api/signinError")
+//    public ResponseEntity SignInFail(){
+//
+//        RestApiException restApiException = new RestApiException();
+//        restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
+//        restApiException.setErrorMessage("로그인 실패. username과 password를 확인해주세요");
+//        return new ResponseEntity(restApiException, HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @GetMapping("/")
+//    public User user(@AuthenticationPrincipal UserDetailsImpl userDetails){
+//        return userDetails.getUser();//여기서 그냥 정보 출력만 했어요 그 화면 페이지 경로는 그냥 그때그떄 하면 되서 금방 바꿀수 있을것 같아요
+//    }
 }
