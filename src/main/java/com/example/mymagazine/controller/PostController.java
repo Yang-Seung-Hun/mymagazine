@@ -28,6 +28,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 public class PostController {
 
     private final PostRepository postRepository;
@@ -46,7 +47,7 @@ public class PostController {
             Boolean like_ok = false;
             Long post_id = post.getId();
             String contents = post.getContents();
-            String title = post.getImg_url();
+            String img_url = post.getImg_url();
             String create_date = post.getCreatedAt().toString();
             String modified_date = post.getModifiedAt().toString();
 
@@ -65,7 +66,7 @@ public class PostController {
             User user = post.getUser();
             Long user_id = user.getId();
 
-            responseGetPostsDtos.add(new ResponseGetPostsDto(user_id, post_id,contents,title,like_cnt,create_date, modified_date, like_ok));
+            responseGetPostsDtos.add(new ResponseGetPostsDto(user_id, post_id,contents,img_url,like_cnt,create_date, modified_date, like_ok));
         }
         return responseGetPostsDtos;
     }
@@ -74,8 +75,11 @@ public class PostController {
     public ResponseEntity registerPost(@RequestBody RequestRegisterPostsDto requestRegisterPostsDto, HttpServletRequest request) {
 
         String token = jwtTokenProvider.resolveToken(request);
+        System.out.println(token);
+
         if(jwtTokenProvider.validateToken(token)){
             String username = jwtTokenProvider.getUserPk(token);
+            System.out.println(username);
             Optional<User> currentUser = userRepository.findByUsername(username);
             Post post = new Post(requestRegisterPostsDto.getImg_url(), requestRegisterPostsDto.getContents(), currentUser.get());
             postService.save(post);
