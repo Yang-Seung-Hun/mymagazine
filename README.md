@@ -6,7 +6,7 @@
    - 스프링 스큐리티를 사용하여 회원가입 구현
    
 2. 로그인/로그아웃
-   - 스프링 시큐리티를 사용하여 로그인/아웃 구현
+   - 스프링 시큐리티를 사용하여 로그인/아웃 구현 ==> jwt로 바꾸고 로그아웃 제외
    
 3. 게시글 작성
    - 로그인 한 사용자만 게시글 작성 가능
@@ -47,13 +47,12 @@ api 설계
 |내용|Method|api|request|response|
 |-------|-----|-----------|------------------------------------|-------------------------------
 |회원가입|POST|/api/signup|username,name,password,password_check(JSON)|HttpStatus 및 메시지|
-|로그인|POST|api/signin|username, password(form형식)|HttpStatus 및 메시지|
-|로그아웃|GET|/logout|없음|HttpStatus 및 메시지|
-|게시글조회|GET|/api/posts||(postId, name, contents, title ,like_cnt(좋아요 수), create_date, modified_date, like_ok)(JSON)|
-|게시글추가|POST|/api/posts/{id}|content,title(JSON)|(postId, name, contents, title ,like_cnt(좋아요 수), create_date, modified_date, like_ok)(JSON)|
-|게시글수정|PATCH|/api/posts/{id}|content,title(JSON)|(postId, name, contents, title ,like_cnt(좋아요 수), create_date, modified_date, like_ok)(JSON)|
+|로그인|POST|api/signin|username, password(JSON)|HttpStatus 및 메시지|
+|게시글조회|GET|/api/posts||(postId, name, contents, imt_url ,like_cnt(좋아요 수), create_date, modified_date, like_ok)(JSON)|
+|게시글추가|POST|/api/posts/{id}|contents,imageurl(JSON)|(postId, name, contents, img_url ,like_cnt(좋아요 수), create_date, modified_date, like_ok)(JSON)|
+|게시글수정|PATCH|/api/posts/{id}|contents,img_url(JSON)|(postId, name, contents, img_url ,like_cnt(좋아요 수), create_date, modified_date, like_ok)(JSON)|
 |게시글삭제|DELETE|/api/posts/{id}|||
-|좋아요|POST|/api/favorite/{id}||post_Id, title, content, create,modfied date,user_id, username, name, ncikname,like_cnt, like_ok|
+|좋아요|POST|/api/favorite/{id}||post_Id, img_url, contents, create,modfied date,user_id, username, name, ncikname,like_cnt, like_ok|
 
 
 
