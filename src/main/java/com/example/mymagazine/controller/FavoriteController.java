@@ -37,8 +37,9 @@ public class FavoriteController {
 
     @PostMapping("api/favorite/{postId}")
     public ResponseEntity Favorite(@PathVariable Long postId, HttpServletRequest request){
-
         String token = jwtTokenProvider.resolveToken(request);
+        System.out.println(token);
+
         if(jwtTokenProvider.validateToken(token)){
 
             //로그인 한 유저 정보
