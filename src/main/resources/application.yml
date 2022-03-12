@@ -2,8 +2,8 @@ spring:
   datasource:
 #    url: "jdbc:mysql://localhost:3306/mymagazine"
     url: "jdbc:mysql://springboot-db.coahhlorbmh0.ap-northeast-2.rds.amazonaws.com:3306/myblog"
-    username: simononze
-    password: fqvi7469!
+    username: 
+    password: 
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
